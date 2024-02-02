@@ -30,7 +30,13 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title)
       ),
-    );
+      body: Center(
+          child: Container(
+            height: 100.0, // Hauteur de l'image
+            child: Image.asset('assets/images/logo.png'),
+          ),
+        )
+      );
   }
 }
 
