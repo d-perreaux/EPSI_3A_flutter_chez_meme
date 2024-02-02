@@ -44,6 +44,36 @@ class MyHomePage extends StatelessWidget {
                   width: 100,
                   fit: BoxFit.contain,
                 ),
+                Text(
+                  'Connexion',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Mot de passe',
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                  },
+                  child: Text('Connexion'),
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+
+                  },
+                  child: Text('Inscription'),
+                ),
               ],
             ),
           ),
