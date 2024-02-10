@@ -1,6 +1,6 @@
-import 'package:chez_meme/HomePage.dart';
+import 'package:chez_meme/pages/HomePage.dart';
 import 'package:flutter/material.dart';
-import 'ConnectionPage.dart';
+import 'pages/ConnectionPage.dart';
 
 class Navigation {
   static Route<dynamic> generateRoute(RouteSettings settings) {
