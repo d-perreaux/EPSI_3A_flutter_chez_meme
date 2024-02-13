@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ViewArticle extends StatefulWidget {
   const ViewArticle({super.key});
 
