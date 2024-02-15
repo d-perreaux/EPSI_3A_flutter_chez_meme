@@ -5,15 +5,15 @@ class ConnectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
+        body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
+                SizedBox(height: 120),
                 Image.asset(
                   "assets/images/logo.png",
                   height: 100,
@@ -40,7 +40,7 @@ class ConnectionPage extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/page2');
+                    Navigator.pushNamed(context, '/home');
                   },
                   child: Text('Connexion'),
                 ),
