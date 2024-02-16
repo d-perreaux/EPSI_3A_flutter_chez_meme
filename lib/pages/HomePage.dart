@@ -1,3 +1,4 @@
+import 'package:chez_meme/pages/CreateArticlePage.dart';
 import 'package:chez_meme/pages/FavoritesPage.dart';
 import 'package:chez_meme/pages/SearchPage.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +23,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: [
           Text("Rechercher un article"),
-          Text("Favoris")
+          Text("Favoris"),
+          Text("Ecrire un article")
         ][_currentIndex],
       ),
       body: [
         SearchPage(),
-        FavoritesPage()
+        FavoritesPage(),
+        CreateArticlePage()
       ][_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -40,6 +43,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             label: 'Favoris',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.create),
+            label: 'Créer article',
           ),
         ],
       ),
