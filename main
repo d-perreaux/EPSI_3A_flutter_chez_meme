@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:chez_meme/pages/ConnectionPage.dart';
+import 'package:chez_meme/pages/HomePage.dart';
+import 'package:flutter/widgets.dart';
+
+void main() {
+  runApp(Authenticator());
+}
+
+class User {
+  final String username;
+  final bool isAdmin;
+
+  User(this.username, this.isAdmin);
+}
+
+class Authenticator extends StatefulWidget {
+  @override
+  _AuthenticatorState createState() => _AuthenticatorState();
+}
+
+class _AuthenticatorState extends State<Authenticator> {
+  User? _currentUser;
+
+  Future<void> authenticate(String username, String password) async {
+    setState(() {
+      _currentUser = User(username ?? '', false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ConnectionPage(),
+        '/home': (context) => HomePage(),
+      },
+      builder: (context, child) {
+        if (_currentUser != null) {
+          return Provider.value(
+            value: _currentUser!,
+            child: child!,
+          );
+        } else {
+          return child!;
+        }
+      },
+    );
+  }
+}
