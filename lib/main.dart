@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:chez_meme/pages/ConnectionPage.dart';
 import 'package:chez_meme/pages/HomePage.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(Authenticator());
@@ -24,13 +23,12 @@ class _AuthenticatorState extends State<Authenticator> {
   User? _currentUser = null; // Initialiser à null
 
   Future<void> authenticate(String username, String password) async {
-    // Votre logique d'authentification
-    // Après avoir authentifié l'utilisateur, mettez à jour _currentUser
-    // _currentUser = User(username, isAdmin);
+    // logique d'authentification
+    // Après avoir authentifié l'utilisateur, mettre à jour _currentUser
+    // ex : _currentUser = User(username, isAdmin);
 
-    // Temporairement pour la démo, initialiser _currentUser avec des valeurs par défaut
     setState(() {
-      _currentUser = User(username ?? '', false); // Utilisateur anonyme
+      _currentUser = User(username ?? '', false); // Utilisateur anonyme pour test
     });
   }
 
@@ -39,7 +37,7 @@ class _AuthenticatorState extends State<Authenticator> {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => ConnectionPage(), // Ne pas passer la fonction authenticate ici
+        '/': (context) => ConnectionPage(),
         '/home': (context) => HomePage(),
       },
       // Placer l'instance de l'utilisateur dans le contexte global
