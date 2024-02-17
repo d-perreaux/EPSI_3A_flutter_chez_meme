@@ -2,7 +2,6 @@ import 'package:chez_meme/models/article.dart';
 import 'package:chez_meme/pages/CreateArticlePage.dart';
 import 'package:chez_meme/pages/FavoritesPage.dart';
 import 'package:chez_meme/pages/SearchPage.dart';
-import 'package:chez_meme/pages/ViewArticle.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         ][_currentIndex],
       ),
       body: [
-        ViewArticle(article : article),
+        SearchPage(),
         FavoritesPage(),
         CreateArticlePage()
       ][_currentIndex],
