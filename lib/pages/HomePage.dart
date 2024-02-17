@@ -1,6 +1,7 @@
 import 'package:chez_meme/pages/CreateArticlePage.dart';
 import 'package:chez_meme/pages/FavoritesPage.dart';
 import 'package:chez_meme/pages/SearchPage.dart';
+import 'package:chez_meme/pages/TestPage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       body: [
         SearchPage(),
         FavoritesPage(),
-        CreateArticlePage()
+        TestPage()
       ][_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
