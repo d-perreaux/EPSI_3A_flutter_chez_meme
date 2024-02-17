@@ -1,13 +1,13 @@
 class Article {
   String title;
   String description;
-  String tag;
+  List <String> tags;
   String content;
 
   Article(
       this.title,
       this.description,
-      this.tag,
+      this.tags,
       this.content
       );
 
