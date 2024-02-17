@@ -11,6 +11,16 @@ class Article {
       this.content,
       );
 
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
+      json['title'] as String,
+      json['description'] as String,
+      json['tag'] as String,
+      json['content'] as String,
+    );
+  }
+
+
   int addToFavorites() {
     return 1;
   }
