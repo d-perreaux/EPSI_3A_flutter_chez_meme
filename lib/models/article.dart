@@ -8,7 +8,7 @@ class Article {
       this.title,
       this.description,
       this.tag,
-      this.content
+      this.content,
       );
 
   int addToFavorites() {
