@@ -122,9 +122,9 @@ class _TestPageState extends State<CreateArticlePage> {
                         FocusScope.of(context).requestFocus(FocusNode());
                         Article article1 = Article(title,description,tag,content);
                         print("Titre de l'article : ${article1.title}");
+                        print("Remèdes de l'article : ${article1.content}");
                         print("Description de l'article : ${article1.description}");
                         print("tag de l'article : ${article1.tag}");
-                        print("Remèdes de l'article : ${article1.content}");
                       }
                     },
                     style: ElevatedButton.styleFrom(
