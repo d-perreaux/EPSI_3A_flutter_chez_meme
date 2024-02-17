@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../models/article.dart';
 
 class ViewArticle extends StatefulWidget {
-  const ViewArticle({super.key});
+  final Article article;
+
+  const ViewArticle({super.key, required this.article});
 
   @override
   State<ViewArticle> createState() => _ViewArticleState();
@@ -12,47 +15,46 @@ class _ViewArticleState extends State<ViewArticle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        color: Color.fromRGBO(104, 2, 42, 1.0),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                "assets/images/logo.png",
-                height: 100,
-                width: 100,
-                fit: BoxFit.contain,
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  border: Border.all(width: 2),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Text(
+                  widget.article.title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                  ),
+                ),
               ),
-              const SizedBox(height: 20),
-              Card(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        'Effectuer une recherche',
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 20),
-                      const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Entrez votre terme de recherche',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-
-                        },
-                        child:
-                        const Text('Rechercher'),
-                      ),
-                    ],
+              SizedBox(height: 16.0),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  widget.article.tag,
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  widget.article.content,
+                  style: TextStyle(
+                    fontSize: 25,
                   ),
                 ),
               ),
@@ -63,3 +65,5 @@ class _ViewArticleState extends State<ViewArticle> {
     );
   }
 }
+
+
