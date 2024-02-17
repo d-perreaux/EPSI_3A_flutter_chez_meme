@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:chez_meme/utility/auth.dart';
+import 'package:chez_meme/models/user.dart';
+import 'package:chez_meme/pages/HomePage.dart';
 
-class ConnectionPage extends StatelessWidget {
+class ConnectionPage extends StatefulWidget {
+  @override
+  _ConnectionPageState createState() => _ConnectionPageState();
+}
+
+class _ConnectionPageState extends State<ConnectionPage> {
+
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +46,14 @@ class ConnectionPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                   ),
                 ),
                 SizedBox(height: 10),
                 TextFormField(
+                  controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Mot de passe',
@@ -39,7 +61,12 @@ class ConnectionPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    final email = _emailController.text;
+                    final password = _passwordController.text;
+                    final
+
+
                     Navigator.pushNamed(context, '/home');
                   },
                   child: Text('Connexion'),
