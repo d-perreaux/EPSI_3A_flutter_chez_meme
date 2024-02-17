@@ -1,3 +1,4 @@
+import 'package:chez_meme/models/article.dart';
 import 'package:chez_meme/pages/CreateArticlePage.dart';
 import 'package:chez_meme/pages/FavoritesPage.dart';
 import 'package:chez_meme/pages/SearchPage.dart';
@@ -10,6 +11,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+
+  Article article = Article("cumque exercitationem inventore", "j'adore l'eau", "agua", "Minus accusamus commodi. Illo consequuntur quod nulla ipsum pariatur. Veniam ratione similique quod consequuntur assumenda autem laudantium aliquid consequuntur. Dignissimos saepe velit porro dignissimos cumque voluptatibus quos magnam nulla. Maiores veniam asperiores culpa laboriosam rerum mollitia. Suscipit incidunt atque delectus.\nAliquid repellendus animi commodi quibusdam placeat cupiditate maiores consequatur error. Nam earum autem repudiandae omnis laudantium fuga dolor delectus. Dolor neque nulla. Velit aut deserunt impedit aliquam iusto aut esse hic harum.\nSoluta consequatur ab sapiente praesentium illo et animi vitae neque. Pariatur temporibus sequi. Corrupti beatae voluptate neque numquam. Illum doloremque repellendus voluptate perspiciatis. Debitis enim porro quae praesentium. Error fugit debitis in quis.");
 
   setCurrentIndex(int index) {
     setState(() {
@@ -53,6 +56,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
