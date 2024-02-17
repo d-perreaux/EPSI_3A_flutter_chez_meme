@@ -26,7 +26,6 @@ class _ViewArticleState extends State<ViewArticle> {
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.green,
-                  border: Border.all(width: 2),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Text(
