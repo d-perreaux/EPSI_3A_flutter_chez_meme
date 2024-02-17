@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/article.dart';
+import 'ViewArticle.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchState extends State<SearchPage> {
   List<Article> allArticles = [
-    Article("PIZZA", "Description 1", ["tag1", "tag2"], "Contenu 1"),
-    Article("THAI", "Description 2", ["tag3", "tag4"], "Contenu 2"),
+    Article("PIZZA", "Description 1", "tag1","Contenu 1"),
+    Article("THAI", "Description 2", "tag3", "Contenu 2"),
   ];
 
   List<Article> searchResults = [];
@@ -57,8 +58,10 @@ class _SearchState extends State<SearchPage> {
                         .where((article) =>
                     article.title.toLowerCase().contains(searchTerm.toLowerCase()) ||
                         article.description.toLowerCase().contains(searchTerm.toLowerCase()) ||
-                        article.tags.any((tag) => tag.toLowerCase().contains(searchTerm.toLowerCase())))
+                        article.tag.toLowerCase().contains(searchTerm.toLowerCase())
+                    )
                         .toList();
+
 
                     if (searchResults.isEmpty) {
                       searchResults.clear();
@@ -88,7 +91,7 @@ class _SearchState extends State<SearchPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ArticleDetailPage(article: searchResults[index]),
+                                      builder: (context) => ViewArticle(article: searchResults[index]),
                                     ),
                                   );
                                 },
@@ -110,37 +113,6 @@ class _SearchState extends State<SearchPage> {
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ArticleDetailPage extends StatelessWidget {
-  final Article article;
-
-  const ArticleDetailPage({Key? key, required this.article}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(article.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              article.title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(article.description),
-            const SizedBox(height: 10),
-            Text(article.content),
           ],
         ),
       ),

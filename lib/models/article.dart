@@ -1,14 +1,14 @@
 class Article {
   String title;
   String description;
-  List <String> tags;
+  String tag;
   String content;
 
   Article(
       this.title,
       this.description,
-      this.tags,
-      this.content
+      this.tag,
+      this.content,
       );
 
   int addToFavorites() {
