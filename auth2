@@ -1,0 +1,102 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:chez_meme/pages/HomePage.dart';
+import 'package:flutter/widgets.dart';
+import 'dart:async';
+
+void main() {
+  runApp(Authenticator());
+}
+
+class User {
+  final String username;
+  final bool isAdmin;
+
+  User(this.username, this.isAdmin);
+}
+
+class Authenticator extends StatefulWidget {
+  @override
+  _AuthenticatorState createState() => _AuthenticatorState();
+}
+
+class _AuthenticatorState extends State<Authenticator> {
+  final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  User? _currentUser;
+
+  Future<void> authenticate() async {
+    if (_formKey.currentState!.validate()) {
+      final String username = _usernameController.text;
+      final String password = _passwordController.text;
+      bool isAdmin = false;
+      if (username == 'admin' && password == 'admin') {
+        isAdmin = true;
+      }
+      setState(() {
+        _currentUser = User(username, isAdmin);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Scaffold(
+              appBar: AppBar(title: Text('Login')),
+              body: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      TextFormField(
+                        controller: _usernameController,
+                        decoration: InputDecoration(labelText: 'Username'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your username';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(labelText: 'Password'),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 24.0),
+                      ElevatedButton(
+                        onPressed: authenticate,
+                        child: Text('Login'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+        '/home': (context) => HomePage(),
+      },
+      builder: (context, child) {
+        if (_currentUser != null) {
+          return Provider.value(
+            value: _currentUser!,
+            child: child!,
+          );
+        } else {
+          return child!;
+        }
+      },
+    );
+  }
+}
