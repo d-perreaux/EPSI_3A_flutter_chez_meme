@@ -51,7 +51,7 @@ class _ConnectionPageState extends State<ConnectionPage> {
               children: [
                 SizedBox(height: 120),
                 Image.asset(
-                  "assets/images/logo.png",
+                  "assets/images/mami_logo.png",
                   height: 100,
                   width: 100,
                   fit: BoxFit.contain,
@@ -64,7 +64,7 @@ class _ConnectionPageState extends State<ConnectionPage> {
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    labelText: 'Email',
+                    labelText: "Nom d'utilisateur",
                   ),
                 ),
                 SizedBox(height: 10),
