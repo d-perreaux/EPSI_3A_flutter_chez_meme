@@ -52,7 +52,7 @@ Puis la fonction de recherche affiche tous les articles contenant l'élément de
 Il suffit de cliquer sur un des articles correspondant à la recherche pour afficher son contenu dans une nouvelle page.
 
 ### Création d'un article
-Nous n'avons pas implémenter de route POST pour la création d'un article.
+Nous n'avons pas implémenté de route POST pour la création d'un article.
 La page vérifie puis collecte les valeurs des inputs, génère une instance d' Article puis l'affiche dans la console.
 
 ### Logo
