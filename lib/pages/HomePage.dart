@@ -1,8 +1,9 @@
-import 'package:chez_meme/models/article.dart';
+import 'package:chez_meme/pages/AccountPage.dart';
 import 'package:chez_meme/pages/CreateArticlePage.dart';
-import 'package:chez_meme/pages/FavoritesPage.dart';
 import 'package:chez_meme/pages/SearchPage.dart';
 import 'package:flutter/material.dart';
+import 'package:chez_meme/utility/providerUser.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,18 +21,20 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isAdmin = Provider.of<UserProvider>(context).user?.role ?? false;
+
     return Scaffold(
       appBar: AppBar(
         title: [
-          Text("Rechercher un article"),
-          Text("Favoris"),
-          Text("Ecrire un article")
+          Text("Bienvenue ${Provider.of<UserProvider>(context).user?.name ?? "Accueil"}"),
+          if(isAdmin)Text("Ecrire un article"),
+          Text("Détails du compte")
         ][_currentIndex],
       ),
       body: [
         SearchPage(),
-        FavoritesPage(),
-        CreateArticlePage()
+        if(isAdmin) CreateArticlePage(),
+        AccountPage()
       ][_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -41,13 +44,14 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.search),
             label: 'Rechercher',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'Favoris',
-          ),
-          BottomNavigationBarItem(
+          if (isAdmin)
+            BottomNavigationBarItem(
             icon: Icon(Icons.create),
             label: 'Créer article',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Compte',
           ),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:chez_meme/utility/auth.dart';
 import 'package:chez_meme/models/user.dart';
 import 'package:chez_meme/pages/HomePage.dart';
+import 'package:chez_meme/utility/providerUser.dart';
 
 class ConnectionPage extends StatefulWidget {
   @override
@@ -22,10 +23,25 @@ class _ConnectionPageState extends State<ConnectionPage> {
     _passwordController.dispose();
   }
 
+  Future<void> _authenticateUser(BuildContext context) async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+
+    final user = await Auth.authenticate(email, password);
+    if (user != null) {
+      Provider.of<UserProvider>(context, listen: false).setUser(user);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Identifiants incorrects. Veuillez réessayer.'),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -62,19 +78,13 @@ class _ConnectionPageState extends State<ConnectionPage> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () async {
-                    final email = _emailController.text;
-                    final password = _passwordController.text;
-                    final
-
-
-                    Navigator.pushNamed(context, '/home');
+                    await _authenticateUser(context);
                   },
                   child: Text('Connexion'),
                 ),
                 SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-
                   },
                   child: Text('Inscription'),
                 ),

@@ -1,31 +1,34 @@
-class User {
-  final String name;
-  final bool role;
-  final int id;
+import 'package:flutter/cupertino.dart';
 
-  User(this.name, this.role, this.id);
+class User extends ChangeNotifier {
+  String name;
+  String password;
+  bool role;
+  String id;
 
-  User.fromJson(Map<String, dynamic> json)
-      : name = json['name'] as String,
-        role = json['role'] as bool,
-        id = json['id'] as int;
+  User(this.name, this.password, this.role, this.id);
+
+  void updateUser({String? name, String? password, bool? role, String? id}) {
+    this.name = name ?? this.name;
+    this.password = password ?? this.password;
+    this.role = role ?? this.role;
+    this.id = id ?? this.id;
+    notifyListeners();
+  }
 
   Map<String, dynamic> toJson() => {
     'name': name,
+    'password': password,
     'role': role,
     'id': id,
   };
 
-  int readArticle() {
-    return 1;
-  }
-
-  int createArticle() {
-    // Si ADMIN!
-    return 1;
-  }
-
-  int getFavorites() {
-    return 1;
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      json['name'] as String,
+      json['password'] as String,
+      json['isAdmin'] as bool,
+      json['id'] as String
+    );
   }
 }

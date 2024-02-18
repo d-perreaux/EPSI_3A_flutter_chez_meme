@@ -11,17 +11,12 @@ class Article {
       this.content,
       );
 
-  int addToFavorites() {
-    return 1;
-  }
-
-  int deleteArticle() {
-    //Si ADMIN
-    return 1;
-  }
-
-  int updateArticle() {
-    //Si ADMIN
-    return 1;
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
+      json['title'] as String,
+      json['description'] as String,
+      json['tag'] as String,
+      json['content'] as String,
+    );
   }
 }

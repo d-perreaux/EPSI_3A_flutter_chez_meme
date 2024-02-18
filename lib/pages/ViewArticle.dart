@@ -44,6 +44,8 @@ class _ViewArticleState extends State<ViewArticle> {
                   widget.article.tag,
                   style: TextStyle(
                     fontSize: 25,
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline
                   ),
                 ),
               ),
@@ -64,5 +66,3 @@ class _ViewArticleState extends State<ViewArticle> {
     );
   }
 }
-
-

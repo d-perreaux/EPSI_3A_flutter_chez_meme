@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import '../models/article.dart';
 import 'ViewArticle.dart';
 
@@ -10,20 +12,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchState extends State<SearchPage> {
-  List<Article> allArticles = [
-    Article("PIZZA", "Description 1", "tag1","Contenu 1"),
-    Article("THAI", "Description 2", "tag3", "Contenu 2"),
-  ];
-
   List<Article> searchResults = [];
   String searchTerm = "";
+
+  Future<List<Article>> fetchArticlesFromApi() async {
+    final response = await http.get(Uri.parse('https://65bca6a6b51f9b29e931f27e.mockapi.io/api/v1/articles'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((json) => Article.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load articles');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child:
-        Container(
-        color: Color.fromRGBO(104, 2, 42, 1.0),
+      child: Container(
+        color: Color.fromRGBO(104, 2, 42, 0.9),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -54,22 +61,27 @@ class _SearchState extends State<SearchPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      searchResults = allArticles
-                          .where((article) =>
-                      article.title.toLowerCase().contains(searchTerm.toLowerCase()) ||
-                          article.description.toLowerCase().contains(searchTerm.toLowerCase()) ||
-                          article.tag.toLowerCase().contains(searchTerm.toLowerCase())
-                      )
-                          .toList();
-                      if (searchResults.isEmpty) {
-                        searchResults.clear();
-                      }
-                      setState(() {});
-                    },
-                    child: const Text('Rechercher'),
-                ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            final apiArticles = await fetchArticlesFromApi();
+                            searchResults = apiArticles
+                                .where((article) =>
+                            article.title.toLowerCase().contains(searchTerm.toLowerCase()) ||
+                                article.description.toLowerCase().contains(searchTerm.toLowerCase()) ||
+                                article.tag.toLowerCase().contains(searchTerm.toLowerCase()))
+                                .toList();
+
+                            if (searchResults.isEmpty) {
+                              searchResults.clear();
+                            }
+                            setState(() {});
+                          } catch (e) {
+                            print('Error fetching articles: $e');
+                          }
+                        },
+                        child: const Text('Rechercher'),
+                      ),
                       if (searchResults.isNotEmpty) ...[
                         const SizedBox(height: 20),
                         Column(
