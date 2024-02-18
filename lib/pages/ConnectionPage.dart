@@ -49,7 +49,7 @@ class _ConnectionPageState extends State<ConnectionPage> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                SizedBox(height: 120),
+                SizedBox(height: 60),
                 Image.asset(
                   "assets/images/mami_logo.png",
                   height: 100,
