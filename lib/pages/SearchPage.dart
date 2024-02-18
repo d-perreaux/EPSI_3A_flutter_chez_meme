@@ -30,7 +30,6 @@ class _SearchState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Color.fromRGBO(104, 2, 42, 0.9),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
